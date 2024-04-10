@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <div class="countdown-template" data-finish-date="2024-12-31" data-finish-hour="00:00">
+        <div>
+            <span>Days</span>
+            <strong class="day">--</strong>
+        </div>
+        <div>
+            <span>Hours</span>
+            <strong class="hour">--</strong>
+        </div>
+        <div>
+            <span>Minutes</span>
+            <strong class="minute">--</strong>
+        </div>
+        <div>
+            <span>Seconds</span>
+            <strong class="second">--</strong>
+        </div>
+    </div>
+    <script>
+        const countdownTemplate = document.querySelector('.countdown-template');
+        let finishDate;
+
+        // Geri sayımı güncelle
+        function updateCountdown() {
+            const currentDate = new Date();
+            const difference = finishDate - currentDate;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                countdownTemplate.querySelector('.day').textContent = ('0' + days).slice(-2);
+                countdownTemplate.querySelector('.hour').textContent = ('0' + hours).slice(-2);
+                countdownTemplate.querySelector('.minute').textContent = ('0' + minutes).slice(-2);
+                countdownTemplate.querySelector('.second').textContent = ('0' + seconds).slice(-2);
+            } else {
+                // Geri sayım tamamlandığında
+                countdownTemplate.innerHTML = '<strong>COUNTDOWN COMPLETED!</strong>';
+            }
+            console.log(new Date());
+        }
+        if (countdownTemplate) {
+            // Bitiş tarihini al
+            finishDate = new Date(countdownTemplate.dataset.finishDate + 'T' + countdownTemplate.dataset.finishHour + ':00');
+
+            setInterval(updateCountdown, 1000);
+
+            // Sayfa yüklendiğinde hemen geri sayımı güncelle
+            updateCountdown();
+        }
+    </script>
+</body>
+
+</html>
