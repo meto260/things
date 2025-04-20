@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Wallet Connection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <w3-container>
+        <w3-title>MetaMask Wallet Connection</w3-title>
+        <w3-button connect>Connect Wallet</w3-button>
+        <w3-status main></w3-status>
+        <w3-transaction>
+            <w3-tx-group>
+                <w3-input eth></w3-input>
+                <w3-amount pul></w3-amount>
+            </w3-tx-group>
+            <w3-button send>Send ETH</w3-button>
+            <w3-status tx></w3-status>
+        </w3-transaction>
+    </w3-container>
+    
+    <script src="app.js"></script>
+</body>
+</html>
